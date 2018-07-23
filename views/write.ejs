@@ -1,0 +1,21 @@
+<script type="text/javascript" src="/javascripts/write.js" /></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=oqWQBcCe7OyS1fXJKoTC&submodules=geocoder"></script>
+
+<div id="writeInput">
+    <label>
+        <b>가게이름</b>
+    </label>
+    <input id="title" type="text">
+    <label>
+        <b>가게 위치</b>
+    </label>
+    <div>
+        <input id="address_x" type="text">
+        <input id="address_y" type="text">
+    </div>
+    <button id="writeSubmit">Register</button>
+</div>
+
+<div id="mapDialog" title="가게위치등록">
+    <div id="map" style="width:100%; height:100%"></div>
+</div>

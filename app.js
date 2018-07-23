@@ -3,9 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var expressLayouts = require('express-ejs-layouts');
+
+var redis = require('redis');
+var client = redis.createClient(6379,"127.0.0.1");
 
 var indexRouter = require('./routes/index');
+var apiRouter = require('./routes/api/demand');
 var usersRouter = require('./routes/users');
+
 
 var app = express();
 
@@ -18,8 +24,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressLayouts);
 
 app.use('/', indexRouter);
+app.use('/api',apiRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
@@ -37,5 +45,11 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
+app.listen(8090,function(){
+  console.log('server 8090 port is started!');
+})
 
 module.exports = app;
